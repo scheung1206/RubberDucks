@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  get 'calendar/show'
+
   root 'home#index'
 
   resources :posts
   devise_for :users, controllers: {registrations: "registrations"}
+
+  CalendarExample::Application.routes.draw do
+  resource :calendar, only: [:show], controller: :calendar
+ #root to: "calendar#show"
+end
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -57,4 +65,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

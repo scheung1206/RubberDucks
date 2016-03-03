@@ -27,8 +27,8 @@ module CalendarExample
       :address => 'smtp.gmail.com',
       :domain => 'gmail.com',
       :port => 587,
-      :user_name => "scheung1206@gmail.com",
-      :password => "Seumdwa55",
+      :user_name => "rubberducksmailer@gmail.com",
+      :password => "Naaccalendar",
       :authentication => 'plain',
     }
   end

@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Naac</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "http://yandex.st/bootstrap/3.0.2/css/bootstrap.min.css", media: "all" %>
-  <%= javascript_include_tag "http://yandex.st/bootstrap/3.0.2/js/bootstrap.min.js" %>
-  <%= csrf_meta_tags %>
-</head>
+
 <body>
 
-  <div id = "header"><h1>Naac</h1></header>
-	</div>
+
   <% if user_signed_in? %>
   <p>Hello, <%= current_user.name %> - <%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %></p>
   <br>
@@ -19,12 +11,12 @@
 
 	<div class = "container">
 	<center>
-	<%= yield %>
-	</div>
-
-	<div id = "footer">
-	<center>
-	<h1>Naac</h1>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "http://yandex.st/bootstrap/3.0.2/css/bootstrap.min.css", media: "all" %>
+  <%= javascript_include_tag "http://yandex.st/bootstrap/3.0.2/js/bootstrap.min.js" %>
+  <%= csrf_meta_tags %>
+  <%= yield %>
 	</div>
 
 </body>

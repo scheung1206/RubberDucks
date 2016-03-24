@@ -1,3 +1,9 @@
+/*
+ *= require_self
+ *= require jquery.ui.datepicker
+ *= require_tree
+*/
+
 body {
 	background-size: cover;
 	font-size: 16px;
@@ -136,15 +142,4 @@ p.small {
 .selected {
 	color: #665851!important;
 	transition: 0.5s;
-}
-
-/* Animation Delay */
-#logo {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: 2s;
-}
-
-.login-box {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: 1s;
 }

@@ -24,6 +24,30 @@
   <strong>End Time:</strong>
   <%= @event.endTime %>
 </p>
+<h2> Posts </h2>
+<% @event.posts.each do |post| %>
+<tr>
+  <p><%= post.title %> </p>
+             <blockquote>
+               <%= post.content %>
+             </blockquote>
+    </tr>
+<% end %>
+
+<h2> Make a Post </h2>
+<%= form_for([@event, @event.posts.build]) do |f| %>
+<div class="field">
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+</div>
+<div class="field">
+  <%= f.label :content %><br>
+  <%= f.text_area :content %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', calendar_path %>

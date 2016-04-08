@@ -31,6 +31,14 @@
              <blockquote>
                <%= post.content %>
              </blockquote>
+<p>
+  <%= link_to "Show", [post.event,post] %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Post', [post.event, post],
+               method: :delete, data: { confirm: 'Are you sure?' }  %>
+</p>
     </tr>
 <% end %>
 

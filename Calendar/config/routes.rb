@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  resources :calendars
   resources :events do
     resources :posts
   end
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
 
   CalendarExample::Application.routes.draw do
+  resources :calendars
   resources :events
   resource :calendar, only: [:show], controller: :calendar
  #root to: "calendar#show"

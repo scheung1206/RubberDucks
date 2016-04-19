@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413070200) do
+ActiveRecord::Schema.define(version: 20160419193707) do
+
+  create_table "calendars", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -26,16 +32,13 @@ ActiveRecord::Schema.define(version: 20160413070200) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "posts", ["event_id"], name: "index_posts_on_event_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
-    t.string   "last_name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -48,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160413070200) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

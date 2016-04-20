@@ -11,8 +11,7 @@ class CalendarsController < ApplicationController
   # GET /calendars/1
   # GET /calendars/1.json
   def show
-    #@events = Event.find(params[:id])
-    @events = Event.all
+    @events = @calendar.events.all
     @events_by_date = @events.group_by(&:date)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end

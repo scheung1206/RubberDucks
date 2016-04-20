@@ -14,7 +14,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    @calendar = Calendar.find(params[:calendar_id])
+    @event = @calendar.events.find(params[:event_id])
+    #@post = Post.find[params[:id]]
   end
 
   # GET /posts/new
@@ -30,12 +32,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    @calendar = Calendar.find(params[:calendar_id])
     @event = Event.find(params[:event_id])
     if @event.posts.create(post_params)
-      redirect_to @event,
+      redirect_to url_for([@calendar,@event]),
                   notice: 'Post successfully created.'
     else
-    redirect_to @event,
+    redirect_to calendar_event_path(:calendar,:event),
                 alert: 'Error on creating post'
     end
   end
@@ -59,11 +62,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @calendar = Calendar.find(params[:calendar_id])
     @event = Event.find(params[:event_id])
     @post = @event.posts.find(params[:id])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to @event, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to [@calendar,@event], notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

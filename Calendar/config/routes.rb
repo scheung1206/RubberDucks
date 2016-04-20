@@ -1,9 +1,10 @@
 
 Rails.application.routes.draw do
-  resources :calendars
-  resources :events do
-    resources :posts
+  resources :calendars do
+    resources :events do
+      resources :posts
   end
+end
   get 'calendar/show'
 
   root 'home#index'

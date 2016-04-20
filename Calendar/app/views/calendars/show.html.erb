@@ -1,4 +1,4 @@
-<%= link_to 'Make Event', new_event_path %>
+<%= link_to 'Make Event', new_calendar_event_path(@calendar) %>
 
 <div class="row">
   <div class="col-md-12 text-center">
@@ -20,7 +20,7 @@
       <% if @events_by_date[date] %>
       <ul>
         <% @events_by_date[date].each do |event| %>
-        <li><%= link_to event.title, event %></li>
+        <li><%= link_to event.title, [event.calendar,event] %></li>
       <% end %>
       </ul>
     <% end %>

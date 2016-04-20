@@ -31,19 +31,19 @@
              <blockquote>
                <%= post.content %>
              </blockquote>
-<p>
-  <%= link_to "Show", [post.event,post] %>
-</p>
+             <p>
+               <%= link_to "Show", [@calendar,@event,post] %>
+             </p>
 
-<p>
-  <%= link_to 'Destroy Post', [post.event, post],
-               method: :delete, data: { confirm: 'Are you sure?' }  %>
-</p>
+             <p>
+               <%= link_to 'Destroy Post', [@calendar,@event,post],
+                            method: :delete, data: { confirm: 'Are you sure?' }  %>
+             </p>
     </tr>
 <% end %>
 
 <h2> Make a Post </h2>
-<%= form_for([@event, @event.posts.build]) do |f| %>
+<%= form_for([@calendar,@event, @event.posts.build]) do |f| %>
 <div class="field">
   <%= f.label :title %><br>
   <%= f.text_field :title %>
@@ -57,5 +57,10 @@
 </div>
 <% end %>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Edit', edit_calendar_event_path(@calendar,@event) %> |
 <a href="javascript:history.back()">Back</a>
+<br><br>
+<p>
+  <%= link_to 'Destroy Event', [@calendar,@event],
+               method: :delete, data: { confirm: 'Are you sure?' }  %>
+</p>

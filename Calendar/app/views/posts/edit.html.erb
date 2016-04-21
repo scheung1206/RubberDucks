@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', event_post_path %> |
-<a href="javascript:history.back()">Back</a>
+<%= link_to "Back", calendar_event_post_path(@calendar,@event,@post) %>

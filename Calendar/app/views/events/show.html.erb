@@ -58,7 +58,7 @@
 <% end %>
 
 <%= link_to 'Edit', edit_calendar_event_path(@calendar,@event) %> |
-<a href="javascript:history.back()">Back</a>
+<%= link_to "Back", calendar_path(@calendar) %>
 <br><br>
 <p>
   <%= link_to 'Destroy Event', [@calendar,@event],

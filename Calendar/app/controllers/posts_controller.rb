@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def show
     @calendar = Calendar.find(params[:calendar_id])
     @event = @calendar.events.find(params[:event_id])
-    #@post = Post.find[params[:id]]
+    @post = @event.posts.find(params[:id])
   end
 
   # GET /posts/new
@@ -27,6 +27,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @calendar = Calendar.find(params[:calendar_id])
+    @event = Event.find(params[:event_id])
+    @post = Post.find(params[:id])
   end
 
   # POST /posts
@@ -46,11 +49,13 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    #@event = Event.find(params[:event_id])
+    @calendar = Calendar.find(params[:calendar_id])
+    @event = Event.find(params[:event_id])
     #@post = Post.find(params[:id])
+    #@post = Post.new
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @event, notice: 'Post was successfully updated.' }
+        format.html { redirect_to [@calendar,@event,@post], notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }

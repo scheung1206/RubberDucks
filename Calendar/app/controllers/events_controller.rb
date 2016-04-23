@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def show
       @calendar = Calendar.find(params[:calendar_id])
       @events = Event.find(params[:id])
+      @post = Post.new
   end
 
   # GET /events/new

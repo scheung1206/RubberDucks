@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @post.image.url(:large) %>
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -9,5 +11,6 @@
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
-<%= link_to "Edit", edit_calendar_event_post_path(@calendar,@event,@post)  %>
-<%= link_to "Back", calendar_event_path(@calendar,@event) %>
+
+<%= link_to "Edit", edit_calendar_event_post_path(@calendar, @event, @post) %>
+<%= link_to "back", calendar_event_path(@calendar, @event) %>

@@ -1,5 +1,6 @@
 <h1>Editing Post</h1>
 
-<%= render 'form' %>
+<%= render 'posteditform' %>
 
-<%= link_to "Back", calendar_event_post_path(@calendar,@event,@post) %>
+<%= link_to 'Show', calendar_event_post_path %> |
+<%= link_to "Back", [@calendar,@event] %>

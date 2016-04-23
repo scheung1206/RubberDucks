@@ -27,11 +27,14 @@
 <h2> Posts </h2>
 <% @event.posts.each do |post| %>
 <tr>
-  <p><%= post.title %> </p>
+  <h4><%= post.title %> </h4>
              <blockquote>
+               <%= image_tag post.image.url(:thumb) %>
+               <br><br>
                <%= post.content %>
-             </blockquote>
+
              <p>
+               <br>
                <%= link_to "Show", [@calendar,@event,post] %>
              </p>
 
@@ -39,27 +42,21 @@
                <%= link_to 'Destroy Post', [@calendar,@event,post],
                             method: :delete, data: { confirm: 'Are you sure?' }  %>
              </p>
+             </blockquote>
+            <br><br>
     </tr>
 <% end %>
 
-<h2> Make a Post </h2>
-<%= form_for([@calendar,@event, @event.posts.build]) do |f| %>
-<div class="field">
-  <%= f.label :title %><br>
-  <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label :content %><br>
-  <%= f.text_area :content %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
+<br>
+<h4>
+<%= link_to 'Create Post', new_calendar_event_post_path(@calendar,@event,@post) %>
+</h4>
+<br>
 
+<br>
 <%= link_to 'Edit', edit_calendar_event_path(@calendar,@event) %> |
-<%= link_to "Back", calendar_path(@calendar) %>
-<br><br>
+<%= link_to "Back", @calendar %>
+<br>
 <p>
   <%= link_to 'Destroy Event', [@calendar,@event],
                method: :delete, data: { confirm: 'Are you sure?' }  %>

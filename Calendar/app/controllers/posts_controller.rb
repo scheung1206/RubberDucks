@@ -16,13 +16,16 @@ class PostsController < ApplicationController
   def show
     @calendar = Calendar.find(params[:calendar_id])
     @event = @calendar.events.find(params[:event_id])
-    @post = @event.posts.find(params[:id])
+    #@post = Post.find[params[:id]]
   end
 
   # GET /posts/new
   def new
+    @calendar = Calendar.find(params[:calendar_id])
+    @event = @calendar.events.find(params[:event_id])
     @post = Post.new
-    @event = Event.find(params[:event_id])
+  #  @event = Event.find(params[:event_id])
+  #  @calendar = Calendar.find(params[:calendar_id])
   end
 
   # GET /posts/1/edit
@@ -51,8 +54,6 @@ class PostsController < ApplicationController
   def update
     @calendar = Calendar.find(params[:calendar_id])
     @event = Event.find(params[:event_id])
-    #@post = Post.find(params[:id])
-    #@post = Post.new
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to [@calendar,@event,@post], notice: 'Post was successfully updated.' }
@@ -90,6 +91,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content,:created_at)
+      params.require(:post).permit(:title, :content,:created_at, :image)
     end
 end

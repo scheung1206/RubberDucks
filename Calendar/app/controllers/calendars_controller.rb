@@ -1,11 +1,14 @@
 class CalendarsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
 
   # GET /calendars
   # GET /calendars.json
   def index
-    @calendars = Calendar.all
-  #  @events = Event.find(params[:id])
+    @calendars = current_user.calendars.all #gets all of user's calendars
+    if @calendars.empty?
+      redirect_to new_calendar_path   #if user has no calendar, redirect to new calendar
+    end
   end
 
   # GET /calendars/1
@@ -19,6 +22,7 @@ class CalendarsController < ApplicationController
   # GET /calendars/new
   def new
     @calendar = Calendar.new
+    @calendar.user_id = current_user.id
   end
 
   # GET /calendars/1/edit
@@ -29,7 +33,7 @@ class CalendarsController < ApplicationController
   # POST /calendars.json
   def create
     @calendar = Calendar.new(calendar_params)
-
+    @calendar.user_id = current_user.id
     respond_to do |format|
       if @calendar.save
         format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }

@@ -24,8 +24,6 @@ class PostsController < ApplicationController
     @calendar = Calendar.find(params[:calendar_id])
     @event = @calendar.events.find(params[:event_id])
     @post = Post.new
-  #  @event = Event.find(params[:event_id])
-  #  @calendar = Calendar.find(params[:calendar_id])
   end
 
   # GET /posts/1/edit

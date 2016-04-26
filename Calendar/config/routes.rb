@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   resources :calendars do
     resources :events do
       resources :posts
-  end
+end
 end
   get 'calendar/show'
 
   root 'home#index'
 
-  #resources :posts
+  #resources :users
   devise_for :users, controllers: {registrations: "registrations"}
 
   CalendarExample::Application.routes.draw do

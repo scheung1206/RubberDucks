@@ -11,6 +11,7 @@ body {
 	font-weight: 300;
 	margin: 0;
 	color: #666;
+	height: 100%;
 }
 
 /* Typography */
@@ -30,6 +31,10 @@ h1#title {
 
 h1#title span span {
 	font-weight: 400;
+}
+
+#h1b {
+	color: white;
 }
 
 h2 {
@@ -142,4 +147,38 @@ p.small {
 .selected {
 	color: #665851!important;
 	transition: 0.5s;
+}
+
+#ul2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0px solid #e7e7e7;
+    background-color: #CCFFFF;
+		-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+	background-image: url('/assets/bridge_bg.jpg');
+}
+
+#li2 {
+    float: left;
+}
+
+#li2 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#li2 a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+#li2 a.active {
+    color: white;
+    background-color: #6699FF;
 }

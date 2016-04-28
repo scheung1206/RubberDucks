@@ -27,6 +27,7 @@
 <h2> Posts </h2>
 <% @event.posts.each do |post| %>
 <tr>
+  <div>
   <h4><%= post.title %> </h4>
              <blockquote>
                <%= image_tag post.image.url(:thumb) %>
@@ -42,8 +43,9 @@
                <%= link_to 'Destroy Post', [@calendar,@event,post],
                             method: :delete, data: { confirm: 'Are you sure?' }  %>
              </p>
-             </blockquote>
+           </blockquote>
             <br><br>
+            </div>
     </tr>
 <% end %>
 

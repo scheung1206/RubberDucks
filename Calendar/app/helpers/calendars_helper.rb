@@ -11,7 +11,7 @@ module CalendarsHelper
 
     def table
       content_tag :table, class: "calendar" do
-        header + week_rows
+      header + week_rows
       end
     end
 

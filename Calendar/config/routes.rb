@@ -1,12 +1,13 @@
 
 Rails.application.routes.draw do
   resources :calendars do
+    post'freetime'
+    get 'freetime'
     resources :events do
       resources :posts
 end
 end
   get 'calendar/show'
-
   root 'home#index'
 
   #resources :users

@@ -69,6 +69,34 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def freetime
+    require "date"
+    @calendar = Calendar.find(params[:calendar_id])
+    @events = @calendar.events.all
+    @events_by_date = @events.group_by(&:date)
+    @startRange = params[:startRange]
+    @endRange = params[:endRange]
+    if !@startRange.nil? && !@endRange.nil?
+      @loopdate = Date.parse(@startRange)
+      @freetimelist = ""
+      while (@loopdate <= Date.parse(@endRange))
+        @begintime = Time.new(2000,1,1,12).to_s(:time)+ "AM"
+        @freetimelist << @loopdate.to_s + ": "
+          if @events_by_date[@loopdate]
+              @events_by_date[@loopdate].each do |event|
+              @freetimelist <<  @begintime.to_s + " - " + event.startTime.strftime("%I:%M%p").to_s
+              @freetimelist <<  ", " + event.endTime.strftime("%I:%M%p").to_s + " - " + @begintime.to_s
+              end
+          else
+              @freetimelist << "All Day!"
+          end
+
+        @freetimelist << "\n\n"
+        @loopdate = @loopdate + 1.days
+        end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_calendar
@@ -79,4 +107,5 @@ class CalendarsController < ApplicationController
     def calendar_params
       params.require(:calendar).permit(:title)
     end
+
 end

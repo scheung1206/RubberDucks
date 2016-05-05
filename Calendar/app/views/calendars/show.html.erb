@@ -1,4 +1,6 @@
 <%= link_to 'Make Event', new_calendar_event_path(@calendar) %>
+<%= link_to '| Customize Calendar', edit_calendar_path(@calendar) %>
+<%= link_to '| Find Free Time', calendar_freetime_path(@calendar) %>
 
 <div class="row">
   <div class="col-md-12 text-center">
@@ -17,7 +19,7 @@
   <div class="col-md-12">
     <%= calendar @date do |date| %>
       <%= date.day %>
-      <% if @events_by_date[date] %>
+    <% if @events_by_date[date] %>
       <ul>
         <% @events_by_date[date].each do |event| %>
         <li><%= link_to event.title, [event.calendar,event] %></li>

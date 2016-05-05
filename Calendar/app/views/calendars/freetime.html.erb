@@ -1,0 +1,15 @@
+<%= form_tag calendar_freetime_path(@calendar) do %>
+Start Date: <%= date_field_tag "startRange", "default info" %>
+  <%= ' | ' %>
+End Date:  <%= date_field_tag "endRange", "default info" %>
+<br><br>
+  <%= submit_tag "Save" %>
+<% end %>
+<br>
+<h2> Free Time! </h2>
+<blockquote>
+<%= simple_format(@freetimelist) %>
+<%= @test %>
+</blockquote>
+
+<%= link_to "Back", @calendar %>

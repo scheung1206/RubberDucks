@@ -95,3 +95,29 @@
  background-image: -ms-linear-gradient(top, #3e779d 0%, #65a9d7 100%);
  color: #fff;
  }
+
+ .button2 {
+  border: 1px solid #000a0f;
+  background: #0096fa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a9dbfc), to(#0096fa));
+  background: -webkit-linear-gradient(top, #a9dbfc, #0096fa);
+  background: -moz-linear-gradient(top, #a9dbfc, #0096fa);
+  background: -ms-linear-gradient(top, #a9dbfc, #0096fa);
+  background: -o-linear-gradient(top, #a9dbfc, #0096fa);
+  background-image: -ms-linear-gradient(top, #a9dbfc 0%, #0096fa 100%);
+  padding: 2px 4px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  text-shadow: #7ea4bd 0 1px 0;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: helvetica, serif;
+  text-decoration: none;
+  vertical-align: middle;
+  }
+
+  

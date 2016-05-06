@@ -70,7 +70,6 @@ class CalendarsController < ApplicationController
   end
 
   def freetime
-    require "date"
     @calendar = Calendar.find(params[:calendar_id])
     @events = @calendar.events.all
     @events_by_date = @events.group_by(&:date)
@@ -79,21 +78,34 @@ class CalendarsController < ApplicationController
     if !@startRange.nil? && !@endRange.nil?
       @loopdate = Date.parse(@startRange)
       @freetimelist = ""
+      @daytimes = Array.new
       while (@loopdate <= Date.parse(@endRange))
-        @begintime = Time.new(2000,1,1,12).to_s(:time)+ "AM"
         @freetimelist << @loopdate.to_s + ": "
           if @events_by_date[@loopdate]
-              @events_by_date[@loopdate].each do |event|
-              @freetimelist <<  @begintime.to_s + " - " + event.startTime.strftime("%I:%M%p").to_s
-              @freetimelist <<  ", " + event.endTime.strftime("%I:%M%p").to_s + " - " + @begintime.to_s
+                  if @events_by_date[@loopdate].size > 1
+                    @events_by_date[@loopdate].each do |event|
+                      @daytimes << event.startTime.strftime("%I:%M%p")
+                      @daytimes << event.endTime.strftime("%I:%M%p")
+                    end
+                    @daytimes = @daytimes.sort_by { |a| a.to_time}
+                    @freetimelist << " | 12:00AM - " + @daytimes.shift.to_s + " | "
+                    while @daytimes.size > 1
+                      @freetimelist << @daytimes.shift.to_s + " - " + @daytimes.shift.to_s + " | "
+                    end
+                    @freetimelist << @daytimes.shift.to_s + " - 11:59PM | "
+                  else
+                  @events_by_date[@loopdate].each do |event|
+                    @freetimelist <<  " | 12:00AM - " + event.startTime.strftime("%I:%M%p").to_s + " | "
+                    @freetimelist <<  event.endTime.strftime("%I:%M%p").to_s + " - 11:59PM | "
+                  end
               end
           else
               @freetimelist << "All Day!"
           end
-
-        @freetimelist << "\n\n"
+        @freetimelist << "\n"
         @loopdate = @loopdate + 1.days
         end
+        @freetimelist = @freetimelist.split("\n")
     end
   end
 

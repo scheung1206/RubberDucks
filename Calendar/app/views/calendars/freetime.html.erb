@@ -3,13 +3,17 @@ Start Date: <%= date_field_tag "startRange", "default info" %>
   <%= ' | ' %>
 End Date:  <%= date_field_tag "endRange", "default info" %>
 <br><br>
-  <%= submit_tag "Save" %>
+  <%= submit_tag "Find Free Time!" %>
 <% end %>
 <br>
 <h2> Free Time! </h2>
-<blockquote>
-<%= simple_format(@freetimelist) %>
-<%= @test %>
-</blockquote>
+<div>
+  <% if @freetimelist %>
+   <% while @freetimelist.size > 0 %>
+    <%= @freetimelist.shift.to_s %>
+    <br><br>
+   <% end %>
+   <% end %>
+</div>
 
 <%= link_to "Back", @calendar %>

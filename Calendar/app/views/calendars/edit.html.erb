@@ -3,6 +3,6 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @calendar %> |
-<%= link_to 'Back', calendars_path %>
+<%= link_to 'Back', @calendar %>
 <br>
  <td><%= link_to 'Destroy Calendar', @calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>

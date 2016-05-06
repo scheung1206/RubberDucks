@@ -19,7 +19,7 @@
   <li id="li2"><a href="#about">About</a></li>
   <% if user_signed_in? %>
   <li id="li2", style="float:right"><%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %>
-  <li id="li2", style="float:right"><%= link_to current_user.first_name %></li>
+  <li id="li2", style="float:right"><%= link_to current_user.first_name,calendars_path %></li>
     <% end %>
 </li>
 </ul>

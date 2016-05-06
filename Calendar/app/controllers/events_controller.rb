@@ -30,7 +30,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new
     @calendar = Calendar.find(params[:calendar_id])
     if @calendar.events.create(event_params)
       redirect_to @calendar,

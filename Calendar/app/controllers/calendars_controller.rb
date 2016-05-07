@@ -106,7 +106,11 @@ class CalendarsController < ApplicationController
         @loopdate = @loopdate + 1.days
         end
         @freetimelist = @freetimelist.split("\n")
+        if Date.parse(@startRange) > Date.parse(@endRange)
+          @freetimelist = "ERROR: End Date is greater than start date."
+          end
     end
+
   end
 
   private

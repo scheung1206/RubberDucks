@@ -31,16 +31,49 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @calendar = Calendar.find(params[:calendar_id])
-    if @calendar.events.create(event_params)
-      redirect_to @calendar,
-                  notice: 'Post successfully created.'
-    else
-    redirect_to @calendar,
-                alert: 'Error on creating post'
+    @events = @calendar.events.all
+    puts @events
+    @events_by_date = @events.group_by(&:date)
+    puts
+    puts @events_by_date
+    @d = params[:event][:date]
+    @t = params[:event][:title]
+    puts @t
+    @newStart = (params[:event]["startTime(4i)"].to_s + ":" + params[:event]["startTime(5i)"].to_s).to_time.strftime("%I:%M%p")
+    @newEnd = (params[:event]["endTime(4i)"].to_s + ":" + params[:event]["endTime(5i)"].to_s).to_time.strftime("%I:%M%p")
+    #@newStart = convertTime(params[:event]["startTime(4i)"].to_i , params[:event]["startTime(5i)"].to_i)
+    #@newEnd = params[:event]["endTime(4i)"].to_s + ":" + params[:event]["endTime(5i)"].to_s
+    puts @d.to_s + " | " + @newStart + " | " + @newEnd
+    if !@d.nil?
+      @date = Date.parse(@d)
+      if @events_by_date[@date]
+        @break = false
+        @events_by_date[@date].each do |event|
+
+          if event.startTime.strftime("%I:%M%p") <= @newEnd && event.endTime.strftime("%I:%M%p") >= @newStart
+            @break = true
+          end
+        end
+        if @break
+          redirect_to new_calendar_event_path(@calendar),
+                      alert: 'Error on creating post'
+                      return
+        end
+      end
     end
-      #@event = Event.new(event_params)
 
+    #@event = Event.new(event_params)
+    if @calendar.events.create(event_params)
+          redirect_to @calendar,
+                      notice: 'Post successfully created.'
+    end
+  end
 
+  def convertTime(hour, min)
+    if hour > "12"
+      hour = hour - "12"
+    end
+    return @time
   end
 
   # PATCH/PUT /events/1

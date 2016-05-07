@@ -8,7 +8,10 @@ End Date:  <%= date_field_tag "endRange", "default info" %>
 <br>
 <h2> Free Time! </h2>
 <div>
-  <% if @freetimelist %>
+  <% if @freetimelist.kind_of?(String) %>
+  <%= @freetimelist %>
+  <% end %>
+  <% if @freetimelist.kind_of?(Array) %>
    <% while @freetimelist.size > 0 %>
     <%= @freetimelist.shift.to_s %>
     <br><br>
